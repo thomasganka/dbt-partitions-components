@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: fct_game_results
+    description: Fact table of all NBA game results with enriched winner/loser data
+    columns:
+      - name: game_id
+        description: Unique game identifier
+      - name: game_date
+        description: Date game was played
+      - name: winner
+        description: Winning team abbreviation
+      - name: loser
+        description: Losing team abbreviation
+
+  - name: fct_player_performance
+    description: >
+      Player performance metrics aggregated per game with efficiency ratings
+      and advanced stats calculations
+    columns:
+      - name: stat_id
+        description: Unique stat record identifier
+      - name: player_id
+        description: Player identifier
+      - name: efficiency_rating
+        description: NBA efficiency rating (PTS+REB+AST+STL+BLK-TO-missed FG-missed FT)
+
+  - name: dim_teams
+    description: Team dimension with current season stats and rankings
+    columns:
+      - name: team_abbreviation
+        description: Team short code (primary key)
+      - name: win_pct
+        description: Winning percentage

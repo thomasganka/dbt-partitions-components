@@ -1,0 +1,15 @@
+name: nba_analytics
+version: "1.0.0"
+config-version: 2
+
+profile: nba_analytics
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+
+clean-targets:
+  - target
+  - dbt_packages
+
+on-run-start:
+  - "{{ create_raw_views() }}"

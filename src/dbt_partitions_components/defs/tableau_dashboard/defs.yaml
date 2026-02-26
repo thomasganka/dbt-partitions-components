@@ -1,0 +1,20 @@
+type: dbt_partitions_components.components.tableau_dashboard_component.TableauDashboardComponent
+
+attributes:
+  server_url: "https://tableau.nba-analytics.com"
+  site_id: "nba-analytics-site"
+  token_name: "dagster-service-account"
+  demo_mode: true
+
+  workbooks:
+    - name: nba_team_standings
+      workbook_id: "wb-team-standings-001"
+      description: "NBA Team Standings dashboard - shows win/loss records, rankings, and performance tiers across the league."
+      deps:
+        - "rpt_team_standings"
+
+    - name: nba_player_analytics
+      workbook_id: "wb-player-analytics-002"
+      description: "NBA Player Analytics dashboard - top performers by efficiency, scoring, and fantasy points."
+      deps:
+        - "rpt_player_rankings"

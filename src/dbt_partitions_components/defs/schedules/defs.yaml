@@ -1,0 +1,31 @@
+type: dbt_partitions_components.components.scheduled_job_component.ScheduledJobComponent
+
+attributes:
+  jobs:
+    - name: nba_daily_ingestion
+      cron_schedule: "0 6 * * *"
+      asset_selection: "group:nba_raw_ingestion"
+      description: "Daily NBA data ingestion at 6am ET - fetches latest game data, player stats, and team stats from the API."
+      default_status: RUNNING
+      execution_timezone: US/Eastern
+
+    - name: nba_dbt_daily_build
+      cron_schedule: "30 6 * * *"
+      asset_selection: "kind:dbt"
+      description: "Daily dbt build at 6:30am ET - runs all staging, mart, and report models after data ingestion completes."
+      default_status: RUNNING
+      execution_timezone: US/Eastern
+
+    - name: nba_tableau_refresh
+      cron_schedule: "0 7 * * *"
+      asset_selection: "group:tableau_dashboards"
+      description: "Daily Tableau dashboard refresh at 7am ET - refreshes all Tableau workbook extracts after dbt models complete."
+      default_status: RUNNING
+      execution_timezone: US/Eastern
+
+    - name: nba_weekly_full_refresh
+      cron_schedule: "0 2 * * 0"
+      asset_selection: "*"
+      description: "Weekly full pipeline refresh on Sundays at 2am ET - runs the entire pipeline end-to-end for data quality validation."
+      default_status: STOPPED
+      execution_timezone: US/Eastern

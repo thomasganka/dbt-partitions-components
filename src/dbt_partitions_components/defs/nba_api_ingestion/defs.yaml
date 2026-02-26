@@ -1,0 +1,23 @@
+type: dbt_partitions_components.components.nba_api_component.NbaApiComponent
+
+attributes:
+  api_base_url: "https://api.balldontlie.io/v1"
+  season_start: "2024-10-22"
+  demo_mode: true
+  max_concurrent_backfill: 10
+
+  tables:
+    - name: games
+      endpoint: games
+      description: "Raw NBA game results including scores, teams, and game status. Daily partitioned for season-long backfills."
+      expected_row_count: 8
+
+    - name: player_stats
+      endpoint: stats
+      description: "Per-game player box score statistics. Daily partitioned to support historical analysis and backfills."
+      expected_row_count: 60
+
+    - name: team_stats
+      endpoint: season_averages
+      description: "Team-level aggregate statistics per season. Daily partitioned for tracking team performance trends."
+      expected_row_count: 30

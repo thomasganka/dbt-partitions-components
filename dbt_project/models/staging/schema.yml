@@ -1,0 +1,63 @@
+version: 2
+
+sources:
+  - name: nba_raw
+    description: Raw NBA data ingested from the balldontlie.io API
+    tables:
+      - name: games
+        description: Raw game results with scores and team info
+      - name: player_stats
+        description: Raw per-game player statistics
+      - name: team_stats
+        description: Raw team aggregate statistics
+
+models:
+  - name: stg_games
+    description: Staged and cleaned NBA game results
+    columns:
+      - name: game_id
+        description: Unique game identifier
+      - name: game_date
+        description: Date the game was played
+      - name: season
+        description: NBA season year
+      - name: home_team
+        description: Home team abbreviation
+      - name: away_team
+        description: Away team abbreviation
+      - name: home_score
+        description: Home team final score
+      - name: away_score
+        description: Away team final score
+
+  - name: stg_player_stats
+    description: Staged per-game player statistics
+    columns:
+      - name: stat_id
+        description: Unique stat record identifier
+      - name: game_id
+        description: FK to game
+      - name: player_id
+        description: Player identifier
+      - name: team
+        description: Team abbreviation
+      - name: minutes_played
+        description: Minutes played in the game
+      - name: points
+        description: Points scored
+      - name: rebounds
+        description: Total rebounds
+      - name: assists
+        description: Total assists
+
+  - name: stg_team_stats
+    description: Staged team aggregate statistics
+    columns:
+      - name: team_abbreviation
+        description: Team short code
+      - name: team_name
+        description: Full team name
+      - name: wins
+        description: Total wins
+      - name: losses
+        description: Total losses

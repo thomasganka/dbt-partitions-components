@@ -1,0 +1,21 @@
+type: dbt_partitions_components.components.automation_condition_component.AutomationConditionComponent
+
+attributes:
+  demo_mode: true
+  assets:
+    - name: league_daily_summary
+      cron_schedule: "0 8 * * *"
+      description: "Daily league-wide summary computed at 8am ET. Aggregates yesterday's game results, scoring leaders, upsets, and trends. Auto-materializes via declarative automation."
+      deps:
+        - "rpt_team_standings"
+        - "rpt_player_rankings"
+      group_name: automated_analytics
+      timezone: US/Eastern
+
+    - name: player_watchlist_alerts
+      cron_schedule: "0 12 * * 1-5"
+      description: "Weekday player watchlist alert report at noon ET. Evaluates player performance against scouting thresholds and generates alerts for breakout games, slumps, and trade value changes."
+      deps:
+        - "rpt_player_rankings"
+      group_name: automated_analytics
+      timezone: US/Eastern

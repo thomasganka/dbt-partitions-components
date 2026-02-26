@@ -1,0 +1,16 @@
+type: dbt_partitions_components.components.excel_sensor_component.ExcelSensorComponent
+
+attributes:
+  demo_mode: true
+  files:
+    - name: salary_cap
+      file_path: "data/excel/nba_salary_cap.xlsx"
+      sheet_name: "Sheet1"
+      description: "NBA team salary cap data updated by the front office. Tracks total salary, cap space, luxury tax exposure, and roster size for each team."
+      group_name: excel_ingestion
+
+    - name: trade_targets
+      file_path: "data/excel/nba_trade_targets.xlsx"
+      sheet_name: "Sheet1"
+      description: "Scouting department trade target watchlist. Updated when new trade opportunities are identified or player valuations change."
+      group_name: excel_ingestion

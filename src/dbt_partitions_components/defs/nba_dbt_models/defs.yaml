@@ -1,0 +1,9 @@
+type: dbt_partitions_components.components.partitioned_dbt_component.PartitionedDbtComponent
+
+attributes:
+  dbt_project_dir: dbt_project
+  partition_start_date: "2024-10-22"
+  max_partitions_per_run: 10
+  demo_mode: true
+  dbt_vars:
+    target_schema: nba_analytics

@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: rpt_team_standings
+    description: >
+      Current NBA team standings with win/loss records, rankings, and
+      performance tiers. Powers the Tableau Team Standings dashboard.
+    columns:
+      - name: team_abbreviation
+        description: Team short code
+      - name: conference_rank
+        description: Simulated conference rank by win percentage
+
+  - name: rpt_player_rankings
+    description: >
+      Player ranking report with top performers by efficiency,
+      scoring, and fantasy points. Powers the Tableau Player Analytics dashboard.
+    columns:
+      - name: player_id
+        description: Player identifier
+      - name: avg_efficiency
+        description: Average efficiency rating across games
